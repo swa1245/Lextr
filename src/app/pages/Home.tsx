@@ -8,7 +8,6 @@ import VisionFeatures from "@/app/components/VisionFeatures";
 import HowItWorks from "@/app/components/HowItWorks";
 import Results from "@/app/components/Results";
 import Footer from "@/app/components/Footer";
-import Chatbot from "@/app/components/Chatbot";
 
 export default function HomePage() {
   return (
@@ -21,7 +20,6 @@ export default function HomePage() {
       <HowItWorks />
       <Results />
       <Footer />
-      <Chatbot />
     </main>
   );
 }
