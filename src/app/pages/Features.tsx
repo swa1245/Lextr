@@ -48,7 +48,7 @@ export default function FeaturesPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="pt-40 pb-20 px-6">
         <div className="max-w-7xl mx-auto text-center">

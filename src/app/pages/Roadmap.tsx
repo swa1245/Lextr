@@ -123,7 +123,7 @@ export default function RoadmapPage() {
                   {/* Progress Bar for 'In Progress' */}
                   {phase.status === 'In Progress' && (
                     <div className="mt-4 w-full h-1 bg-blue-100 rounded-full overflow-hidden hidden lg:block">
-                      <div className="h-full bg-blue-600 w-[65%] animate-shimmer bg-linear-to-r from-blue-600 via-blue-400 to-blue-600 bg-[length:200%_100%]" />
+                      <div className="h-full bg-blue-600 w-[65%] animate-shimmer bg-linear-to-r from-blue-600 via-blue-400 to-blue-600 bg-size-[200%_100%]" />
                     </div>
                   )}
                 </div>
