@@ -71,19 +71,18 @@ export default function Footer() {
             <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-navy mb-8">Product</h4>
             <ul className="space-y-4">
               {[
-                { name: 'Features', type: 'none' },
-                { name: 'Pricing', type: 'none' },
-                { name: 'Security', type: 'security' },
-                { name: 'Roadmap', type: 'none' },
-                { name: 'Status Page', type: 'none' }
+                { name: 'Features', href: '/features' },
+                { name: 'Pricing', href: '/pricing' },
+                { name: 'Security', href: '/security' },
+                { name: 'Roadmap', href: '/roadmap' }
               ].map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={(e) => link.type !== 'none' ? handleLegalClick(e, link.type) : null}
+                  <Link
+                    href={link.href}
                     className="text-sm text-gray-500 hover:text-blue-600 font-bold transition-colors cursor-pointer text-left"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -8,10 +8,12 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navItems = ['Home', 'Case Studies', 'Blog'];
+  const navItems = ['Home', 'Features', 'Pricing', 'Case Studies', 'Blog'];
 
   const isActive = (item: string) => {
     if (item === 'Home') return pathname === '/';
+    if (item === 'Features') return pathname === '/features';
+    if (item === 'Pricing') return pathname === '/pricing';
     if (item === 'Blog') return pathname === '/blog';
     if (item === 'Case Studies') return pathname === '/case-studies';
     return false;

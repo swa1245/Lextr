@@ -22,6 +22,14 @@ body {
   background: #FAFBFE;
   color: #333;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+button, 
+[role="button"],
+.cursor-pointer {
+  cursor: pointer;
 }
 
 /* ── Animations ── */

@@ -4,6 +4,7 @@ import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
 import Chatbot from "@/app/components/Chatbot";
 import { Toaster } from "react-hot-toast";
+import SmoothScroll from "@/app/components/SmoothScroll";
 
 const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.className} antialiased`}>
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
         <Chatbot />
         <Toaster position="bottom-right" />
       </body>

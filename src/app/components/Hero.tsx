@@ -38,12 +38,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="animate-fade-up-d2 flex flex-col sm:flex-row justify-center items-center gap-4 mb-20 w-full">
-          <button className="bg-navy text-white hover:bg-[#142a3e] w-full max-w-[280px] sm:w-auto sm:max-w-none px-8 md:px-10 h-[52px] rounded-full text-sm font-bold transition-all shadow-xl shadow-navy/10 cursor-pointer">
+          <Link href="/book" className="flex items-center justify-center bg-navy text-white hover:bg-[#142a3e] w-full max-w-[280px] sm:w-auto sm:max-w-none px-8 md:px-10 h-[52px] rounded-full text-sm font-bold transition-all shadow-xl shadow-navy/10 cursor-pointer">
             Book Strategy call
-          </button>
-          <button className="bg-white text-navy border border-blue-soft hover:border-blue-mid w-full max-w-[280px] sm:w-auto sm:max-w-none px-8 md:px-10 h-[52px] rounded-full text-sm font-bold transition-all shadow-sm cursor-pointer">
+          </Link>
+          <Link href="/pricing" className="flex items-center justify-center bg-white text-navy border border-blue-soft hover:border-blue-mid w-full max-w-[280px] sm:w-auto sm:max-w-none px-8 md:px-10 h-[52px] rounded-full text-sm font-bold transition-all shadow-sm cursor-pointer">
             View Prices
-          </button>
+          </Link>
         </div>
 
         {/* Trust section */}
