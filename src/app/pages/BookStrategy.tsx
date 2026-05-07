@@ -1,13 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import { ArrowRight, CheckCircle2, Star, MessageSquare, Sparkles, Globe2, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Star, MessageSquare, Sparkles, Globe2, ShieldCheck, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 export default function BookStrategyPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -15,7 +19,38 @@ export default function BookStrategyPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!form.current) return;
+
+    setLoading(true);
+
+    // Using environment variables for security
+    emailjs.sendForm(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+      form.current,
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+    )
+      .then((result) => {
+        toast.success("Thanks for reaching out! We'll get back to you soon.", {
+          duration: 5000,
+          style: {
+            background: '#0D1B2A',
+            color: '#fff',
+            borderRadius: '12px',
+            border: '1px solid #1e293b'
+          },
+          iconTheme: {
+            primary: '#3b82f6',
+            secondary: '#fff',
+          },
+        });
+        setSubmitted(true);
+        setLoading(false);
+      }, (error) => {
+        console.log(error.text);
+        alert("Failed to send message. Please try again later.");
+        setLoading(false);
+      });
   };
 
   if (!mounted) return null;
@@ -99,13 +134,14 @@ export default function BookStrategyPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
+                  <form ref={form} onSubmit={handleSubmit} className="space-y-10">
                     <div className="grid md:grid-cols-2 gap-10">
                       <div className="space-y-3">
                         <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] ml-1">Full Name</label>
                         <input
                           required
                           type="text"
+                          name="user_name"
                           placeholder="Jordan Smith"
                           className="w-full bg-surface/50 h-16 px-6 rounded-2xl border border-blue-50 focus:border-blue-500 focus:bg-white outline-none transition-all font-bold text-navy placeholder:text-gray-300"
                         />
@@ -115,6 +151,7 @@ export default function BookStrategyPage() {
                         <input
                           required
                           type="text"
+                          name="user_org"
                           placeholder="Financial Entity"
                           className="w-full bg-surface/50 h-16 px-6 rounded-2xl border border-blue-50 focus:border-blue-500 focus:bg-white outline-none transition-all font-bold text-navy placeholder:text-gray-300"
                         />
@@ -126,6 +163,7 @@ export default function BookStrategyPage() {
                       <input
                         required
                         type="email"
+                        name="user_email"
                         placeholder="j.smith@lextr.intelligence"
                         className="w-full bg-surface/50 h-16 px-6 rounded-2xl border border-blue-50 focus:border-blue-500 focus:bg-white outline-none transition-all font-bold text-navy placeholder:text-gray-300"
                       />
@@ -135,6 +173,7 @@ export default function BookStrategyPage() {
                       <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] ml-1">Your Query</label>
                       <textarea
                         required
+                        name="message"
                         placeholder="Describe your current compliance challenge..."
                         className="w-full bg-surface/50 px-6 py-6 rounded-2xl border border-blue-50 focus:border-blue-500 focus:bg-white outline-none transition-all font-bold text-navy placeholder:text-gray-300 min-h-[160px] resize-none"
                       />
@@ -143,10 +182,20 @@ export default function BookStrategyPage() {
                     <div className="pt-4">
                       <button
                         type="submit"
-                        className="w-full btn-primary h-16 rounded-2xl text-base shadow-xl shadow-navy/10 group"
+                        disabled={loading}
+                        className="w-full btn-primary h-16 rounded-2xl text-base shadow-xl shadow-navy/10 group disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Send Message
-                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        {loading ? (
+                          <span className="flex items-center gap-2">
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            Transmitting...
+                          </span>
+                        ) : (
+                          <>
+                            Send Message
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
                       </button>
                     </div>
 
