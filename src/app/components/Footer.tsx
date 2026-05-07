@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Globe, ShieldCheck, Activity, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Globe, ShieldCheck } from "lucide-react";
+import { FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import LegalModal from "./LegalModal";
 
 export default function Footer() {
@@ -15,20 +16,20 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#EBF2FF] pt-32 pb-20 relative overflow-hidden border-t border-blue-soft">
-      
+
       {/* Background Decor */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-100/10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
-        
+
         {/* Large CTA Section */}
         <div className="flex flex-col items-center text-center mb-32">
           <h2 className="text-navy font-black text-5xl md:text-7xl tracking-tighter mb-12 animate-fade-up">
             Ready to <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-400">Scale Smart?</span>
           </h2>
-          <Link 
-            href="/book" 
+          <Link
+            href="/book"
             className="group flex items-center bg-[#18181B] hover:bg-black text-white pl-10 pr-3 py-3 rounded-full transition-all duration-300 shadow-2xl shadow-black/20"
           >
             <span className="text-base font-bold tracking-wide mr-4">Book Your Strategy Call</span>
@@ -40,7 +41,7 @@ export default function Footer() {
 
         {/* Main Footer Content: Restored Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
-          
+
           {/* Column 1: Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 group mb-8">
@@ -53,10 +54,10 @@ export default function Footer() {
               Compliance Reimagined. AI-powered compliance infrastructure for the world's leading financial institutions.
             </p>
             <div className="flex gap-4">
-              {[Activity, Globe, MessageSquare].map((Icon, i) => (
-                <Link 
-                  key={i} 
-                  href="#" 
+              {[FaTwitter, FaLinkedinIn, FaInstagram].map((Icon, i) => (
+                <Link
+                  key={i}
+                  href="#"
                   className="w-10 h-10 rounded-full bg-white border border-blue-100 flex items-center justify-center text-navy hover:bg-navy hover:text-white transition-all duration-300 shadow-sm"
                 >
                   <Icon className="w-4 h-4" />
@@ -77,7 +78,7 @@ export default function Footer() {
                 { name: 'Status Page', type: 'none' }
               ].map((link) => (
                 <li key={link.name}>
-                  <button 
+                  <button
                     onClick={(e) => link.type !== 'none' ? handleLegalClick(e, link.type) : null}
                     className="text-sm text-gray-500 hover:text-blue-600 font-bold transition-colors cursor-pointer text-left"
                   >
@@ -93,11 +94,9 @@ export default function Footer() {
             <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-navy mb-8">Company</h4>
             <ul className="space-y-4">
               {[
-                { name: 'About', href: '#' },
+                { name: 'Home', href: '/' },
+                { name: 'Case Studies', href: '/case-studies' },
                 { name: 'Blog', href: '/blog' },
-                { name: 'Careers', href: '#' },
-                { name: 'Press Kit', href: '#' },
-                { name: 'Contact', href: '/book' }
               ].map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-sm text-gray-500 hover:text-blue-600 font-bold transition-colors">
@@ -119,7 +118,7 @@ export default function Footer() {
                 { name: 'GDPR Compliance', type: 'gdpr' }
               ].map((link) => (
                 <li key={link.name}>
-                  <button 
+                  <button
                     onClick={(e) => handleLegalClick(e, link.type)}
                     className="text-sm text-gray-500 hover:text-blue-600 font-bold transition-colors cursor-pointer text-left"
                   >
@@ -152,29 +151,29 @@ export default function Footer() {
       </div>
 
       {/* Legal Modals */}
-      <LegalModal 
-        isOpen={activeModal === 'privacy'} 
-        onClose={() => setActiveModal(null)} 
-        title="Privacy Policy" 
-        type="privacy" 
+      <LegalModal
+        isOpen={activeModal === 'privacy'}
+        onClose={() => setActiveModal(null)}
+        title="Privacy Policy"
+        type="privacy"
       />
-      <LegalModal 
-        isOpen={activeModal === 'terms'} 
-        onClose={() => setActiveModal(null)} 
-        title="Terms of Service" 
-        type="terms" 
+      <LegalModal
+        isOpen={activeModal === 'terms'}
+        onClose={() => setActiveModal(null)}
+        title="Terms of Service"
+        type="terms"
       />
-      <LegalModal 
-        isOpen={activeModal === 'security'} 
-        onClose={() => setActiveModal(null)} 
-        title="Security Infrastructure" 
-        type="security" 
+      <LegalModal
+        isOpen={activeModal === 'security'}
+        onClose={() => setActiveModal(null)}
+        title="Security Infrastructure"
+        type="security"
       />
-      <LegalModal 
-        isOpen={activeModal === 'gdpr'} 
-        onClose={() => setActiveModal(null)} 
-        title="GDPR Compliance" 
-        type="gdpr" 
+      <LegalModal
+        isOpen={activeModal === 'gdpr'}
+        onClose={() => setActiveModal(null)}
+        title="GDPR Compliance"
+        type="gdpr"
       />
     </footer>
   );

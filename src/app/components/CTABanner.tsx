@@ -30,7 +30,7 @@ export default function CTABanner() {
             placeholder="Enter your business email"
             className="flex-1 px-5 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-500 outline-none focus:border-orange transition-all text-sm backdrop-blur-sm"
           />
-          <button type="submit" className="btn-orange whitespace-nowrap">
+          <button type="submit" className="btn-orange whitespace-nowrap cursor-pointer">
             Start Free Trial
           </button>
         </form>

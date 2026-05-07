@@ -171,8 +171,8 @@ export default function BookStrategyPage() {
         <div className="max-w-7xl mx-auto px-6 mb-24 animate-fade-up-d3">
           <div className="bg-navy rounded-[48px] p-8 md:p-16 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 group shadow-[0_40px_100px_rgba(13,27,42,0.15)]">
             {/* Visual Decor */}
-            <div className="absolute top-0 right-0 w-[400px] h-full bg-white/5 -skew-x-12 translate-x-1/2 -z-0" />
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl -z-0" />
+            <div className="absolute top-0 right-0 w-[400px] h-full bg-white/5 -skew-x-12 translate-x-1/2 z-0" />
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl z-0" />
 
             <div className="relative z-10 max-w-xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black uppercase text-blue-300 mb-6 border border-white/10">
@@ -189,10 +189,10 @@ export default function BookStrategyPage() {
             <div className="relative z-10 hidden xl:block">
               {/* This represents the visual collage in the image */}
               <div className="w-[440px] h-[300px] relative">
-                <div className="absolute top-0 left-0 w-64 h-80 bg-white/5 backdrop-blur-md rounded-[32px] border border-white/10 p-2 shadow-2xl rotate-[-6deg] overflow-hidden">
+                <div className="absolute top-0 left-0 w-64 h-80 bg-white/5 backdrop-blur-md rounded-[32px] border border-white/10 p-2 shadow-2xl -rotate-6 overflow-hidden">
                   <div className="w-full h-full bg-blue-600/5 rounded-[28px]" />
                 </div>
-                <div className="absolute top-10 right-0 w-64 h-80 bg-white/10 backdrop-blur-md rounded-[32px] border border-white/20 p-2 shadow-2xl rotate-[6deg] overflow-hidden">
+                <div className="absolute top-10 right-0 w-64 h-80 bg-white/10 backdrop-blur-md rounded-[32px] border border-white/20 p-2 shadow-2xl rotate-6 overflow-hidden">
                   <div className="w-full h-full bg-white/5 rounded-[28px]" />
                 </div>
               </div>

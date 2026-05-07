@@ -51,10 +51,9 @@ export const SITE_CONFIG = {
       {
         title: "Company",
         links: [
-          { label: "About Us", href: "#" },
-          { label: "Careers", href: "#" },
-          { label: "Newsroom", href: "#" },
-          { label: "Contact", href: "#" },
+          { label: "Home", href: "/" },
+          { label: "Case Studies", href: "/case-studies" },
+          { label: "Blog", href: "/blog" },
         ],
       },
       {
@@ -82,6 +81,14 @@ export const BLOG_POSTS = [
     category: 'Regulatory Tech',
     title: 'The Future of SEC Reporting: Navigating New AI Mandates',
     excerpt: 'As the SEC introduces new guidelines for AI transparency, financial institutions must adapt their reporting frameworks to ensure compliance without sacrificing innovation.',
+    content: `The Securities and Exchange Commission (SEC) has recently unveiled a comprehensive set of guidelines aimed at increasing transparency in how financial institutions utilize Artificial Intelligence. These mandates are not merely suggestions; they represent a fundamental shift in regulatory expectations.
+
+Key pillars of the new mandates include:
+- **Algorithmic Accountability:** Institutions must be able to explain the logic behind AI-driven decisions, especially those affecting retail investors.
+- **Data Governance:** Strict protocols for the data sets used to train compliance models are now mandatory.
+- **Bias Mitigation:** Regular audits for algorithmic bias are required to prevent discriminatory outcomes in lending and trading.
+
+At Lextr, we've integrated these requirements into our core infrastructure. Our platform provides real-time "explainability" layers that map every AI decision back to regulatory benchmarks, ensuring that our clients remain ahead of the curve while continuing to leverage the power of machine learning.`,
     date: 'May 12, 2024',
     readTime: '8 min read',
     author: 'Sarah Chen',
@@ -93,6 +100,14 @@ export const BLOG_POSTS = [
     category: 'Compliance Strategy',
     title: 'Scale Safely: How to Build a Robust Compliance Engine',
     excerpt: 'Building a compliance engine that scales with your growth is critical for modern fintechs. Learn the key pillars of scalable infrastructure.',
+    content: `For fintechs, the transition from seed stage to institutional scale is often where compliance debt becomes a critical bottleneck. A "robust" compliance engine isn't just about having the right software; it's about architecture.
+
+Scalable compliance requires three essential components:
+1. **Modular Design:** Your systems must be able to swap or update individual regulatory modules (like KYC or AML) without rebuilding the entire stack.
+2. **Automated Audit Trails:** Manual logging is the enemy of scale. Every interaction must be timestamped and cryptographically verified in real-time.
+3. **Regulatory Interoperability:** As you expand into new jurisdictions, your engine should handle the delta between localized requirements automatically.
+
+Building this from scratch is a multi-year endeavor. This is why Lextr offers a "Compliance-as-Infrastructure" model, allowing firms to focus on their unique product value while our engine handles the regulatory heavy lifting.`,
     date: 'May 10, 2024',
     readTime: '6 min read',
     author: 'Michael Ross',
@@ -104,6 +119,16 @@ export const BLOG_POSTS = [
     category: 'AI & Machine Learning',
     title: 'Eliminating False Positives in AML Monitoring with LLMs',
     excerpt: 'Large Language Models are transforming how we handle Anti-Money Laundering alerts. Discover how Lextr reduces false positives by 85%.',
+    content: `The industry average for false positives in Anti-Money Laundering (AML) alerts remains stubbornly high, often exceeding 95%. This inefficiency costs the global financial sector billions in manual review hours.
+
+Lextr's integration of Large Language Models (LLMs) represents a breakthrough in this field. Unlike traditional rules-based systems, our LLM-driven engine understands context.
+
+How it works:
+- **Natural Language Understanding:** Our models analyze the unstructured data associated with transactions, providing a more nuanced view of the customer's intent.
+- **Pattern Recognition:** By processing vast amounts of historical data, our AI identifies subtle patterns that human reviewers might miss.
+- **Continuous Learning:** The system improves with every verified alert, further refining its accuracy over time.
+
+By reducing false positives by 85%, we allow compliance teams to focus their expertise on high-risk cases, significantly enhancing the overall security of the institution.`,
     date: 'May 8, 2024',
     readTime: '10 min read',
     author: 'Dr. James Wilson',
@@ -115,6 +140,14 @@ export const BLOG_POSTS = [
     category: 'Financial Security',
     title: 'Basel III and the Next Decade of Capital Adequacy',
     excerpt: 'A deep dive into the evolving landscape of global banking regulations and what the next phase of Basel III means for your institution.',
+    content: `The Basel III framework has been the cornerstone of banking regulation since the global financial crisis. However, as we enter a new decade, the "Final Basel III" (often called Basel IV) is introducing significant changes to capital adequacy requirements.
+
+Institutions must now prepare for:
+- **Standardized Approaches:** A shift away from internal models towards standardized regulatory calculations for credit and operational risk.
+- **Output Floors:** Ensuring that capital requirements do not fall below a certain percentage of the standardized approach results.
+- **Enhanced Disclosure:** More rigorous transparency requirements regarding risk-weighted assets.
+
+Lextr's infrastructure is designed to handle these complex calculations in real-time, providing C-suite executives with instant visibility into their capital posture and ensuring total alignment with global banking standards.`,
     date: 'May 5, 2024',
     readTime: '12 min read',
     author: 'Elena Rodriguez',

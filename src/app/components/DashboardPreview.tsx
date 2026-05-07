@@ -63,7 +63,7 @@ export default function DashboardPreview() {
                         <Activity className="w-4 h-4 text-blue-primary" />
                         <span className="text-[10px] font-bold text-gray-400 uppercase">Live Audit Stream...</span>
                      </div>
-                     <button className="text-[10px] font-bold text-blue-primary uppercase hover:underline">View Full Report</button>
+                     <button className="text-[10px] font-bold text-blue-primary uppercase hover:underline cursor-pointer">View Full Report</button>
                   </div>
                </div>
             </div>

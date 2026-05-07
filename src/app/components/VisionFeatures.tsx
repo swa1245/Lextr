@@ -62,11 +62,11 @@ export default function VisionFeatures() {
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feat, i) => (
             <div key={feat.title}
-              className="group relative bg-navy rounded-[40px] overflow-hidden transition-all duration-500 animate-fade-up shadow-xl shadow-navy/5"
+              className="group relative bg-[#0B121A] rounded-[40px] overflow-hidden transition-all duration-500 animate-fade-up shadow-xl shadow-navy/5"
               style={{ animationDelay: `${i * 0.1}s` }}>
 
               {/* Visual area (top of card) */}
-              <div className="h-56 bg-white/[0.03] p-8 flex items-center justify-center border-b border-white/5 overflow-hidden relative">
+              <div className="h-56 bg-white/3 p-8 flex items-center justify-center border-b border-white/5 overflow-hidden relative">
 
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -74,7 +74,7 @@ export default function VisionFeatures() {
                 </div>
 
                 {feat.visual.type === 'dashboard' && (
-                  <div className="bg-[#0A1620] rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
+                  <div className="bg-navy-dark rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
                         <MonitorDot className="w-3.5 h-3.5 text-blue-400" />
@@ -91,7 +91,7 @@ export default function VisionFeatures() {
                 )}
 
                 {feat.visual.type === 'chart' && (
-                  <div className="bg-[#0A1620] rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
+                  <div className="bg-navy-dark rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
                     <div className="text-[10px] text-white/40 font-medium mb-1">Total Impact</div>
                     <div className="text-xl font-extrabold text-white mb-4 tracking-tight">{feat.visual.value}</div>
                     <div className="flex items-end gap-1.5 h-20">
@@ -109,7 +109,7 @@ export default function VisionFeatures() {
                 )}
 
                 {feat.visual.type === 'network' && (
-                  <div className="bg-[#0A1620] rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
+                  <div className="bg-navy-dark rounded-2xl p-5 w-full max-w-[220px] shadow-2xl border border-white/10">
                     <div className="text-[10px] text-white/40 font-medium mb-3">Regulatory Sync</div>
                     <svg viewBox="0 0 160 80" className="w-full">
                       {/* Lines */}
@@ -132,7 +132,7 @@ export default function VisionFeatures() {
 
               {/* Text content */}
               <div className="p-10">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8">
                   <feat.icon className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-white font-bold text-2xl mb-4">{feat.title}</h3>

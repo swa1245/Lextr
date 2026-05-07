@@ -1,85 +1,33 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import Link from 'next/link';
 import { 
   ArrowRight, 
-  ChevronRight, 
-  Briefcase, 
-  Search, 
-  Wallet, 
-  Users, 
-  Rocket, 
-  FileText,
-  BarChart3
+  ChevronRight,
+  X
 } from 'lucide-react';
+import { CASE_PROJECTS, TRUSTED_CLIENTS } from '@/app/constants';
 
-const CASE_PROJECTS = [
-  {
-    id: 1,
-    title: "Tax Management",
-    category: "Tax Planning",
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80&w=600",
-    icon: Search,
-    darkText: "Automating complex tax reporting workflows for multi-national financial entities.",
-    lightText: "Increased reporting accuracy by 99% while reducing manual hours by 400+ monthly.",
-    bgColor: "bg-white"
-  },
-  {
-    id: 2,
-    title: "Business Plan",
-    category: "Growth Strategies",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600",
-    icon: Briefcase,
-    darkText: "Strategic compliance architecture for rapid-scale fintech startups entering new markets.",
-    lightText: "Successfully launched across 4 new regulatory zones in less than 90 days.",
-    bgColor: "bg-[#F3F0FF]"
-  },
-  {
-    id: 3,
-    title: "Company Budget",
-    category: "Book Keeping",
-    image: "https://images.unsplash.com/photo-1454165833762-02ad50e8958d?auto=format&fit=crop&q=80&w=600",
-    icon: Wallet,
-    darkText: "Real-time budgetary tracking integrated with compliance-first node architecture.",
-    lightText: "Optimized operational spend by 24% through automated ledger audits.",
-    bgColor: "bg-white"
-  },
-  {
-    id: 4,
-    title: "Consultation",
-    category: "Loan Management",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600",
-    icon: Users,
-    darkText: "Expert guidance on institutional lending protocols and regulatory adherence.",
-    lightText: "Processed $1.2B in loan volume with zero compliance friction or audit delays.",
-    bgColor: "bg-[#F3F0FF]"
-  },
-  {
-    id: 5,
-    title: "Startup Funding",
-    category: "Growth Strategies",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=600",
-    icon: Rocket,
-    darkText: "Facilitating secure capital injection for early-stage fintech ventures globally.",
-    lightText: "Raised $400M in Series B funding with a bulletproof regulatory posture.",
-    bgColor: "bg-white"
-  },
-  {
-    id: 6,
-    title: "Credible Funds",
-    category: "Audit & Assurance",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600",
-    icon: BarChart3,
-    darkText: "Maintaining the highest standard of fund credibility through constant node audit.",
-    lightText: "Rated A+ for compliance integrity by 12 independent regulatory bodies.",
-    bgColor: "bg-[#F3F0FF]"
-  }
-];
 
 export default function CaseStudiesPage() {
+  const [selectedStudy, setSelectedStudy] = useState<number | null>(null);
+  const activeStudy = CASE_PROJECTS.find(p => p.id === selectedStudy);
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (selectedStudy) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedStudy]);
+
   return (
     <main className="min-h-screen bg-white selection:bg-navy selection:text-white">
       <Navbar />
@@ -95,15 +43,10 @@ export default function CaseStudiesPage() {
 
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-extrabold text-[#111] mb-6 tracking-tight">
-            Project We Have Done
+            Case Studies We Have Done
           </h1>
           
-          {/* Breadcrumb Pill */}
-          <div className="inline-flex items-center bg-[#3D374D] text-white px-6 py-2.5 rounded-full text-xs font-bold gap-2 mb-10 shadow-lg shadow-navy/10">
-            <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
-            <ChevronRight size={14} className="text-white/40" />
-            <span className="opacity-60">Case Study</span>
-          </div>
+
 
           <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             Explore our portfolio of successful institutional deployments and see how we've helped 
@@ -112,16 +55,13 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* ── 2. LOGO BAR ── */}
+      {/* ── 2. TRUSTED CLIENTS BAR ── */}
       <section className="px-6 mb-24">
         <div className="max-w-7xl mx-auto">
-           <div className="bg-[#1C1C1E] rounded-[40px] p-10 flex flex-wrap items-center justify-center gap-12 md:gap-24 shadow-2xl">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="flex items-center gap-2 opacity-100">
-                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                     <div className="w-4 h-4 bg-white rounded-sm rotate-45" />
-                   </div>
-                   <span className="text-white font-black text-xl tracking-tighter">Logoipsum</span>
+           <div className="bg-[#1C1C1E] rounded-[40px] p-10 flex flex-wrap items-center justify-center gap-10 md:gap-20 shadow-2xl">
+              {TRUSTED_CLIENTS.map((client, i) => (
+                <div key={i} className="flex items-center opacity-50 hover:opacity-100 transition-opacity cursor-default">
+                   <span className="text-white font-extrabold text-xl md:text-2xl tracking-tight">{client}</span>
                 </div>
               ))}
            </div>
@@ -150,7 +90,10 @@ export default function CaseStudiesPage() {
                         <p className="text-gray-400 text-xs font-bold uppercase tracking-wider">{project.category}</p>
                       </div>
                    </div>
-                   <div className="w-10 h-10 rounded-full bg-[#B8A6E3] flex items-center justify-center text-white cursor-pointer hover:bg-navy transition-colors">
+                   <div 
+                      className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 cursor-pointer hover:bg-blue-600 hover:text-white transition-colors"
+                      onClick={() => setSelectedStudy(project.id)}
+                   >
                       <ArrowRight size={18} />
                    </div>
                 </div>
@@ -175,6 +118,56 @@ export default function CaseStudiesPage() {
       </section>
 
       <Footer />
+
+      {/* ── 4. CASE STUDY MODAL ── */}
+      {selectedStudy && activeStudy && (
+        <div className="fixed inset-0 z-2000 flex items-center justify-center px-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-navy/60 backdrop-blur-sm cursor-pointer transition-opacity"
+            onClick={() => setSelectedStudy(null)}
+          />
+          
+          {/* Modal Container */}
+          <div className="relative bg-white w-full max-w-3xl rounded-[32px] overflow-hidden shadow-2xl z-10 animate-fade-up flex flex-col max-h-[90vh]">
+            <button 
+              className="absolute top-4 right-4 w-10 h-10 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors z-20 cursor-pointer"
+              onClick={() => setSelectedStudy(null)}
+            >
+              <X size={20} />
+            </button>
+            
+            {/* Header Image Area */}
+            <div className="h-64 sm:h-80 w-full relative shrink-0">
+              <img src={activeStudy.image} alt={activeStudy.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-navy/40 to-transparent" />
+              
+              <div className="absolute bottom-6 left-6 right-6 text-white flex items-end gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0 shadow-lg border border-white/20">
+                  <activeStudy.icon size={28} />
+                </div>
+                <div>
+                  <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">{activeStudy.category}</p>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">{activeStudy.title}</h2>
+                </div>
+              </div>
+            </div>
+            
+            {/* Scrollable Content Area */}
+            <div className="p-8 md:p-10 space-y-6 overflow-y-auto">
+              <div className="bg-[#F5F8FF] p-6 rounded-2xl border border-blue-100">
+                <h3 className="text-navy font-bold text-lg mb-2">The Challenge</h3>
+                <p className="text-gray-600 leading-relaxed font-medium">{activeStudy.darkText}</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+                <h3 className="text-navy font-bold text-lg mb-2">The Solution & Results</h3>
+                <p className="text-gray-600 leading-relaxed font-medium">{activeStudy.lightText}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </main>
   );
 }

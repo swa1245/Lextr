@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Search, ArrowRight, Calendar, Clock, ChevronRight, ExternalLink } from 'lucide-react';
+import { Search, ArrowRight, Calendar, Clock, ChevronRight, ExternalLink, X } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@/lib/constants';
 
 export default function BlogPage() {
@@ -18,6 +18,20 @@ export default function BlogPage() {
       return matchesCategory && matchesSearch;
     });
   }, [activeCategory, searchQuery]);
+  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+  const selectedPost = useMemo(() => BLOG_POSTS.find(p => p.id === selectedPostId), [selectedPostId]);
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (selectedPostId) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedPostId]);
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] selection:bg-blue-100">
@@ -86,12 +100,21 @@ export default function BlogPage() {
               {filteredPosts.map((post, i) => (
                 <div key={post.id} className="flex flex-col group animate-fade-up bg-white rounded-[32px] p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/30 transition-all duration-500 cursor-pointer" style={{ animationDelay: `${i * 0.1}s` }}>
                   {/* Card Image */}
-                  <div className="relative aspect-[16/10] rounded-[24px] overflow-hidden mb-6 cursor-pointer">
+                  <div 
+                    className="relative aspect-16/10 rounded-[24px] overflow-hidden mb-6 cursor-pointer"
+                    onClick={() => setSelectedPostId(post.id)}
+                  >
                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
 
                     {/* Hover Button Overlay */}
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px]">
-                      <button className="px-6 py-2.5 bg-white rounded-full text-navy font-bold text-sm flex items-center gap-2 shadow-2xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500 cursor-pointer">
+                      <button 
+                        className="px-6 py-2.5 bg-white rounded-full text-navy font-bold text-sm flex items-center gap-2 shadow-2xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500 cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedPostId(post.id);
+                        }}
+                      >
                         Open Blog <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>
@@ -159,6 +182,87 @@ export default function BlogPage() {
       </main>
 
       <Footer />
+
+      {/* ── Blog Modal ── */}
+      {selectedPost && (
+        <div className="fixed inset-0 z-2000 flex items-center justify-center px-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-navy/60 backdrop-blur-sm cursor-pointer transition-opacity"
+            onClick={() => setSelectedPostId(null)}
+          />
+          
+          {/* Modal Container */}
+          <div className="relative bg-white w-full max-w-4xl rounded-[40px] overflow-hidden shadow-2xl z-10 animate-fade-up flex flex-col max-h-[90vh]">
+            <button 
+              className="absolute top-6 right-6 w-12 h-12 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors z-20 cursor-pointer"
+              onClick={() => setSelectedPostId(null)}
+            >
+              <X size={24} />
+            </button>
+            
+            {/* Header Image Area */}
+            <div className="h-72 sm:h-[450px] w-full relative shrink-0">
+              <img src={selectedPost.image} alt={selectedPost.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-navy/20 to-transparent" />
+              
+              <div className="absolute bottom-10 left-10 right-10 text-white">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="px-4 py-1.5 bg-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                    {selectedPost.category}
+                  </span>
+                  <div className="flex items-center gap-2 text-white/60 text-xs font-bold">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {selectedPost.date}
+                  </div>
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-black leading-tight tracking-tight max-w-3xl">
+                  {selectedPost.title}
+                </h2>
+              </div>
+            </div>
+            
+            {/* Scrollable Content Area */}
+            <div className="p-10 md:p-16 overflow-y-auto">
+              <div className="flex items-center gap-4 mb-12 p-4 bg-gray-50 rounded-2xl border border-gray-100 w-fit">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+                  <img src={`https://i.pravatar.cc/150?u=${selectedPost.author}`} alt={selectedPost.author} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <div className="font-black text-navy text-sm">{selectedPost.author}</div>
+                  <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{selectedPost.readTime}</div>
+                </div>
+              </div>
+
+              <div className="prose prose-lg max-w-none">
+                <p className="text-navy/60 text-xl font-bold leading-relaxed mb-10 italic border-l-4 border-blue-600 pl-8">
+                  {selectedPost.excerpt}
+                </p>
+                <div className="space-y-8">
+                  {(selectedPost as any).content?.split('\n\n').map((paragraph: string, idx: number) => (
+                    <p key={idx} className="text-gray-600 text-lg leading-relaxed font-medium">
+                      {paragraph.startsWith('- ') ? (
+                        <span className="block pl-4">{paragraph}</span>
+                      ) : (
+                        paragraph.split('**').map((part, i) => i % 2 === 1 ? <strong key={i} className="text-navy font-black">{part}</strong> : part)
+                      )}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-16 pt-10 border-t border-gray-100 flex justify-end">
+                <button 
+                  onClick={() => setSelectedPostId(null)}
+                  className="px-10 py-4 bg-navy text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-900 transition-all shadow-xl shadow-navy/20 cursor-pointer"
+                >
+                  Close Reading
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

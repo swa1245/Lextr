@@ -35,7 +35,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Desktop Orbital Layout */}
-        <div className="hidden lg:flex relative w-[600px] h-[600px] mx-auto items-center justify-center mt-48 mb-32 z-10">
+        <div className="hidden lg:flex relative w-[600px] h-[600px] mx-auto items-center justify-center mt-48 mb-32 z-10 lg:scale-[0.8] xl:scale-100 origin-center transition-transform duration-500">
 
           {/* Massive Central Rings */}
           <div className="absolute inset-0 w-full h-full rounded-full border-2 border-dashed border-blue-200 animate-[spin_60s_linear_infinite] z-0" />
@@ -54,7 +54,7 @@ export default function HowItWorks() {
             {/* Connection Dot */}
             <div className="absolute w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-[0_0_10px_rgba(37,99,235,0.3)] z-50 translate-x-1/2 translate-y-1/2" />
             {/* Card pointing bottom-right to dot */}
-            <div className="w-[340px] min-w-[340px] shrink-0 mr-8 mb-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-right relative">
+            <div className="w-[340px] min-w-[340px] shrink-0 mr-8 mb-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-right relative cursor-pointer">
               {/* Connecting Line */}
               <div className="absolute -bottom-8 -right-8 w-12 h-px bg-linear-to-r from-transparent to-blue-200 rotate-45 origin-bottom-right" />
 
@@ -74,7 +74,7 @@ export default function HowItWorks() {
             {/* Connection Dot */}
             <div className="absolute w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-[0_0_10px_rgba(37,99,235,0.3)] z-50 -translate-x-1/2 translate-y-1/2" />
             {/* Card pointing bottom-left to dot */}
-            <div className="w-[340px] min-w-[340px] shrink-0 ml-8 mb-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-left relative">
+            <div className="w-[340px] min-w-[340px] shrink-0 ml-8 mb-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-left relative cursor-pointer">
               {/* Connecting Line */}
               <div className="absolute -bottom-8 -left-8 w-12 h-px bg-linear-to-l from-transparent to-blue-200 -rotate-45 origin-bottom-left" />
 
@@ -94,7 +94,7 @@ export default function HowItWorks() {
             {/* Connection Dot */}
             <div className="absolute w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-[0_0_10px_rgba(37,99,235,0.3)] z-50 translate-x-1/2 -translate-y-1/2" />
             {/* Card pointing top-right to dot */}
-            <div className="w-[340px] min-w-[340px] shrink-0 mr-8 mt-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-right relative">
+            <div className="w-[340px] min-w-[340px] shrink-0 mr-8 mt-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-right relative cursor-pointer">
               {/* Connecting Line */}
               <div className="absolute -top-8 -right-8 w-12 h-px bg-linear-to-r from-transparent to-blue-200 -rotate-45 origin-top-right" />
 
@@ -114,7 +114,7 @@ export default function HowItWorks() {
             {/* Connection Dot */}
             <div className="absolute w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-[0_0_10px_rgba(37,99,235,0.3)] z-50 -translate-x-1/2 -translate-y-1/2" />
             {/* Card pointing top-left to dot */}
-            <div className="w-[340px] min-w-[340px] shrink-0 ml-8 mt-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-left relative">
+            <div className="w-[340px] min-w-[340px] shrink-0 ml-8 mt-8 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-[0_20px_60px_rgba(13,27,42,0.06)] border border-blue-soft hover:border-blue-300 transition-all text-left relative cursor-pointer">
               {/* Connecting Line */}
               <div className="absolute -top-8 -left-8 w-12 h-px bg-linear-to-l from-transparent to-blue-200 rotate-45 origin-top-left" />
 
@@ -134,7 +134,7 @@ export default function HowItWorks() {
         {/* Mobile / Tablet Fallback (Grid) */}
         <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 relative z-10">
           {steps.map((step) => (
-            <div key={step.num} className="bg-white border border-blue-soft rounded-4xl p-8 shadow-[0_12px_40px_rgba(13,27,42,0.04)] relative">
+            <div key={step.num} className="bg-white border border-blue-soft rounded-4xl p-8 shadow-[0_12px_40px_rgba(13,27,42,0.04)] relative cursor-pointer hover:shadow-lg transition-shadow">
               <div className="flex items-start justify-between mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
                   <step.icon className="w-6 h-6" />

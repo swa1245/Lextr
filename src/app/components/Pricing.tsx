@@ -80,9 +80,9 @@ export default function Pricing() {
               </ul>
 
               {plan.featured ? (
-                <button className="btn-orange w-full h-11 text-sm">{plan.cta}</button>
+                <button className="btn-orange w-full h-11 text-sm cursor-pointer">{plan.cta}</button>
               ) : (
-                <button className="btn-secondary w-full h-11 text-sm">{plan.cta}</button>
+                <button className="btn-secondary w-full h-11 text-sm cursor-pointer">{plan.cta}</button>
               )}
             </div>
           ))}

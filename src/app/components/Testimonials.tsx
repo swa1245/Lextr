@@ -9,10 +9,10 @@ export default function Testimonials() {
         
         <div className="relative mt-20 px-12 group">
           {/* Navigation Arrows */}
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-blue-primary shadow-sm hover:bg-gray-50 transition-all opacity-0 group-hover:opacity-100">
+          <button className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-blue-primary shadow-sm hover:bg-gray-50 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-blue-primary shadow-sm hover:bg-gray-50 transition-all opacity-0 group-hover:opacity-100">
+          <button className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-blue-primary shadow-sm hover:bg-gray-50 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
             <ChevronRight className="w-5 h-5" />
           </button>
           
